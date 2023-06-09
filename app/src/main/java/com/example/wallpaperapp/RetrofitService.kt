@@ -12,7 +12,7 @@ import retrofit2.http.Query
 
 interface RetrofitService {
 
-    @GET("collections/?")
+    @GET("topics/?")
     suspend fun getPhotoCategories(
         @Query("client_id") client_id:String = ACCESS_KEY
     ): Response<ArrayList<PhotoCategoriesListItem>>

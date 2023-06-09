@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wallpaperapp.MainRepository
 import com.example.wallpaperapp.MainViewModel
 import com.example.wallpaperapp.MainViewModelFactory
@@ -19,7 +21,7 @@ class MainFragment : Fragment() {
 
 private lateinit var binding:FragmentMainBinding
 private lateinit var mainVm: MainViewModel
-
+    lateinit var adapter: MainAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,12 +32,20 @@ private lateinit var mainVm: MainViewModel
             requireActivity(),
             MainViewModelFactory())
             .get(MainViewModel::class.java)
-
+        initAdapter()
         getPhotoCategories()
 
         return binding.root
     }
 
+    private fun initAdapter(){
+
+        adapter = MainAdapter()
+        val recyclerView = binding.rcCategories
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = GridLayoutManager(requireContext(),2)
+
+    }
 
     private fun getPhotoCategories(){
         lifecycleScope.launch {
@@ -43,6 +53,7 @@ private lateinit var mainVm: MainViewModel
         }
         mainVm.photoCategoriesList.observe(requireActivity()) { photoCategories ->
             Log.d("MyLog", "$photoCategories")
+            adapter.submitList(photoCategories)
         }
 
     }

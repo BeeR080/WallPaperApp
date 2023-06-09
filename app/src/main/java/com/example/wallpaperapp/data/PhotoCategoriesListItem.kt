@@ -3,7 +3,7 @@ package com.example.wallpaperapp.data
 data class PhotoCategoriesListItem(
     val cover_photo: CoverPhoto,
     val curated: Boolean,
-    val description: Any,
+    val description: String,
     val featured: Boolean,
     val id: String,
     val last_collected_at: String,
