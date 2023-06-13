@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.wallpaperapp.MainViewModel
 import com.example.wallpaperapp.MainViewModelFactory
+import com.example.wallpaperapp.R
 import com.example.wallpaperapp.data.PhotosInCategoriesItem
 import com.example.wallpaperapp.databinding.FragmentPhotoInCategoriesBinding
 import com.example.wallpaperapp.view.adapters.PhotoInCategoriesAdapter
@@ -35,10 +36,19 @@ getPhotos()
         return binding.root
     }
 
+
+
     private fun initAdapter(){
         adapter = PhotoInCategoriesAdapter(object : PhotoInCategoriesAdapter.AdapterClickListener{
             override fun onClick(currentItem: PhotosInCategoriesItem) {
-
+                mainVm.picPhoto.value = currentItem.urls.full
+                activity!!.supportFragmentManager
+                    .beginTransaction()
+                    .addToBackStack("mainfrag")
+                    .replace(
+                        R.id.fragment,
+                        PickPhotoFragment())
+                    .commit()
             }
 
         })

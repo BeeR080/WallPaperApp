@@ -15,10 +15,23 @@ class MainViewModel(
     ):ViewModel() {
 
 
-    private val _photoCategoriesList = MutableLiveData<List<PhotoCategoriesListItem>>()
-    val photoCategoriesList = _photoCategoriesList
-    private val _photoInCategoriesList = MutableLiveData<List<PhotosInCategoriesItem>>()
-    val photoInCategoriesList = _photoInCategoriesList
+    private val _photoCategoriesList by lazy{
+        MutableLiveData<List<PhotoCategoriesListItem>>()
+    }
+    private val _photoInCategoriesList by lazy {
+        MutableLiveData<List<PhotosInCategoriesItem>>()
+    }
+
+    val photoCategoriesList by lazy{
+        _photoCategoriesList
+    }
+
+    val photoInCategoriesList by lazy {
+        _photoInCategoriesList
+    }
+    val picPhoto by lazy {
+        MutableLiveData<String>()
+    }
 
     suspend fun getPhotoCategories(){
 viewModelScope.launch {

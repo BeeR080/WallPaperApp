@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -23,6 +25,7 @@ class MainFragment : Fragment() {
 private lateinit var binding:FragmentMainBinding
 private lateinit var mainVm: MainViewModel
     lateinit var adapter: MainAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,8 +36,12 @@ private lateinit var mainVm: MainViewModel
             requireActivity(),
             MainViewModelFactory())
             .get(MainViewModel::class.java)
+
+
         initAdapter()
         getPhotoCategories()
+        toolbarMenu()
+
 
         return binding.root
     }
@@ -44,12 +51,12 @@ private lateinit var mainVm: MainViewModel
         adapter = MainAdapter(object : MainAdapter.AdapterClickListener{
             override fun onClick(currentItem: PhotoCategoriesListItem) {
                 getPhotoInCategories(currentItem.id)
-activity!!.supportFragmentManager
+
+requireActivity().supportFragmentManager
     .beginTransaction()
     .addToBackStack("mainfrag")
     .replace(R.id.fragment,
     PhotoInCategoriesFragment())
-
     .commit()
             }
 
@@ -67,13 +74,25 @@ activity!!.supportFragmentManager
 
 
     }
+    private fun toolbarMenu(){
+        binding.mainToolbar.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.settings -> requireActivity().supportFragmentManager
+                    .beginTransaction()
+                    .addToBackStack("mainfrag")
+                    .replace(R.id.fragment,
+                        SettingsFragment())
+                    .commit()
 
+            }
+            true
+        }
+    }
     private fun getPhotoCategories(){
         lifecycleScope.launch {
             mainVm.getPhotoCategories()
         }
         mainVm.photoCategoriesList.observe(requireActivity()) { photoCategories ->
-            Log.d("MyLog", "PHOTOS IN CATEGORIES: ${photoCategories}")
             adapter.submitList(photoCategories)
         }
 
