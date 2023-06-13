@@ -1,19 +1,23 @@
-package com.example.wallpaperapp.view
+package com.example.wallpaperapp.view.adapters
+
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.example.wallpaperapp.DiffUtillsPhotoCategoriesListItem
 import com.example.wallpaperapp.R
 import com.example.wallpaperapp.data.PhotoCategoriesListItem
 import com.example.wallpaperapp.databinding.PhotocategoriesListBinding
 
 class MainAdapter(
-    /*private var lListener:AdapterClickListener*/):
-    ListAdapter<PhotoCategoriesListItem, MainAdapter.MyViewHolder>(DiffUtillsPhotoCategoriesListItem()) {
+    private var lListener: AdapterClickListener
+):
+    ListAdapter<PhotoCategoriesListItem,
+            MainAdapter.MyViewHolder>(DiffUtillsPhotoCategoriesListItem()) {
 
 
    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -21,22 +25,29 @@ class MainAdapter(
 
     fun bind(photoCategoriesListItem: PhotoCategoriesListItem) = with(binding){
         mfTvTitle.text = currentList[adapterPosition].title
-        mfTvDescription.text = currentList[adapterPosition].description
         mfTvTotalphotos.text = currentList[adapterPosition].total_photos.toString()
         mfTvLikes.text= currentList[adapterPosition].cover_photo.likes.toString()
-    }
-
-        init {
-
+        mfTvImage.load(currentList[adapterPosition].cover_photo.urls.regular){
+            transformations(RoundedCornersTransformation(8f))
         }
+
     }
+init {
+    itemView.setOnClickListener {
+        lListener.onClick(currentList[adapterPosition])
+    }
+}
+
+
+    }
+
 
 
 
 
 interface AdapterClickListener{
-    fun onLongClick(currentItem: PhotoCategoriesListItem)
-    fun checkBoxClick(currentItem: PhotoCategoriesListItem)
+    fun onClick(currentItem: PhotoCategoriesListItem)
+
 
 }
 
@@ -50,7 +61,6 @@ interface AdapterClickListener{
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentList= getItem(position)
         holder.bind(getItem(position))
     }
 
