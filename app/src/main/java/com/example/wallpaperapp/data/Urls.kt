@@ -1,6 +1,6 @@
 package com.example.wallpaperapp.data
 
-data class Urls(
+data class Urls (
     val full: String,
     val raw: String,
     val regular: String,

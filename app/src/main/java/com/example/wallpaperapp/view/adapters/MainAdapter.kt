@@ -4,6 +4,7 @@ package com.example.wallpaperapp.view.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -20,24 +21,24 @@ class MainAdapter(
             MainAdapter.MyViewHolder>(DiffUtillsPhotoCategoriesListItem()) {
 
 
-   inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = PhotocategoriesListBinding.bind(itemView)
 
-    fun bind(photoCategoriesListItem: PhotoCategoriesListItem) = with(binding){
-        mfTvTitle.text = currentList[adapterPosition].title
-        mfTvTotalphotos.text = currentList[adapterPosition].total_photos.toString()
-        mfTvLikes.text= currentList[adapterPosition].cover_photo.likes.toString()
-        mfTvImage.load(currentList[adapterPosition].cover_photo.urls.regular){
-            transformations(RoundedCornersTransformation(8f))
+        fun bind(photoCategoriesListItem: PhotoCategoriesListItem) = with(binding){
+            mfTvTitle.text = currentList[adapterPosition].title
+            mfTvTotalphotos.text = currentList[adapterPosition].total_photos.toString()
+            mfTvLikes.text= currentList[adapterPosition].cover_photo.likes.toString()
+            mfTvImage.load(currentList[adapterPosition].cover_photo.urls.regular){
+                transformations(RoundedCornersTransformation(8f))
+            }
+
+        }
+        init {
+            itemView.setOnClickListener {
+                lListener.onClick(currentList[adapterPosition])
+            }
         }
 
-    }
-init {
-    itemView.setOnClickListener {
-        lListener.onClick(currentList[adapterPosition])
-    }
-}
-
 
     }
 
@@ -45,17 +46,17 @@ init {
 
 
 
-interface AdapterClickListener{
-    fun onClick(currentItem: PhotoCategoriesListItem)
+    interface AdapterClickListener{
+        fun onClick(currentItem: PhotoCategoriesListItem)
 
 
-}
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-      val view = LayoutInflater.from(parent.context).inflate(
-          R.layout.photocategories_list,
-          parent,
-          false)
+        val view = LayoutInflater.from(parent.context).inflate(
+            R.layout.photocategories_list,
+            parent,
+            false)
 
         return MyViewHolder(view)
     }

@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="168dp"
-        android:layout_height="242dp"
+        android:layout_height="268dp"
         android:layout_margin="8dp"
         app:cardCornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,24 +34,60 @@
                 android:id="@+id/mf_tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+
                 android:text="Title" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical"
+                >
+
+
+             <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginBottom="8dp">
+
+                 <ImageView
+                     android:layout_width="24dp"
+                     android:layout_height="24dp"
+                     android:src="@drawable/ic_photos"
+                     />
             <TextView
                 android:id="@+id/mf_tv_totalphotos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total photos" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="1234" />
+            </LinearLayout>
 
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_like"
+                />
             <TextView
                 android:id="@+id/mf_tv_likes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Likes:12" />
-
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="12" />
+        </LinearLayout>
 
         </LinearLayout>
 
-
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

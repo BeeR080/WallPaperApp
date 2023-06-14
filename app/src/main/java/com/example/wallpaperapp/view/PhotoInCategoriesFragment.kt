@@ -57,9 +57,7 @@ class PhotoInCategoriesFragment : Fragment(R.layout.fragment_photo_in_categories
                 activity!!.supportFragmentManager
                     .beginTransaction()
                     .addToBackStack("mainfrag")
-                    .replace(
-                        R.id.fragment,
-                        PickPhotoFragment())
+                    .replace(R.id.fragment, PickPhotoFragment(),"pickf")
                     .commit()
             }
 
@@ -75,7 +73,7 @@ class PhotoInCategoriesFragment : Fragment(R.layout.fragment_photo_in_categories
     }
 
     private fun getPhotos(){
-        mainVm.photoInCategoriesList.observe(requireActivity()){photos->
+        mainVm.photoInCategoriesList.observe(viewLifecycleOwner){photos->
             adapter.submitList(photos)
 
         }

@@ -11,8 +11,7 @@ import com.example.wallpaperapp.data.repository.MainRepositoryImpl
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    private val repository: MainRepositoryImpl
-
+    private val repository: MainRepositoryImpl,
     ):ViewModel() {
 
 
@@ -34,7 +33,7 @@ class MainViewModel(
         MutableLiveData<String>()
     }
 
-    suspend fun getPhotoCategories(){
+   suspend fun getPhotoCategories(){
 viewModelScope.launch {
 val response = repository.getPhotoCategories()
         _photoCategoriesList.value = response.body()
