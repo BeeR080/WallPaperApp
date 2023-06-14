@@ -1,12 +1,14 @@
-package com.example.wallpaperapp
+package com.example.wallpaperapp.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.wallpaperapp.domain.model.RetrofitService
+import com.example.wallpaperapp.data.repository.MainRepositoryImpl
 
 class MainViewModelFactory(): ViewModelProvider.Factory {
 
     private val repository by lazy {
-        MainRepository(RetrofitService.getRetrofitInstance())
+        MainRepositoryImpl(RetrofitService.getRetrofitInstance())
     }
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

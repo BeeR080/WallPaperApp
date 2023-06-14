@@ -3,27 +3,25 @@ package com.example.wallpaperapp.view
 import android.app.WallpaperManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.example.wallpaperapp.MainViewModel
-import com.example.wallpaperapp.MainViewModelFactory
+import com.example.wallpaperapp.R
+import com.example.wallpaperapp.viewmodel.MainViewModel
+import com.example.wallpaperapp.viewmodel.MainViewModelFactory
 import com.example.wallpaperapp.databinding.FragmentPickPhotoBinding
 
 
-class PickPhotoFragment : Fragment() {
-private lateinit var binding:FragmentPickPhotoBinding
+class PickPhotoFragment : Fragment(R.layout.fragment_pick_photo) {
+private  var _binding:FragmentPickPhotoBinding?=null
+    private  val binding:FragmentPickPhotoBinding get() = _binding!!
     private lateinit var mainVm: MainViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentPickPhotoBinding.inflate(inflater)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentPickPhotoBinding.bind(view)
 
         mainVm = ViewModelProvider(
             requireActivity(),
@@ -31,13 +29,12 @@ private lateinit var binding:FragmentPickPhotoBinding
         )
             .get(MainViewModel::class.java)
 
-
         getPickPhoto()
         setImagetoWallpaper()
+    }
 
-        return binding.root
 
-}
+
     private fun getPickPhoto(){
 
         binding.pickImageView.load(mainVm.picPhoto.value){
@@ -52,6 +49,9 @@ private lateinit var binding:FragmentPickPhotoBinding
 
         }
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 }

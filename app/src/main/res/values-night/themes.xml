@@ -1,7 +1,24 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Wallpaperapp" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimaryVariant">@color/dark_purple</item>
+        <item name="colorOnPrimary">@color/dark_purple</item>
+        <item name="android:colorAccent">@color/purple</item>
+        <item name="android:colorControlHighlight">@color/purple</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:navigationBarColor">@color/dark_purple</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/purple</item>
+        <item name="colorSecondaryVariant">@color/purple</item>
+        <item name="colorOnSecondary">@color/gray</item>
+        <item name="appBarLayoutStyle">@color/dark_purple</item>
+        <item name="bottomAppBarStyle">@color/dark_purple</item>
+        <item name="toolbarStyle">@color/dark_purple</item>
 
-        <item name="colorPrimary">@color/button_purple</item>
+        <item name="android:actionMenuTextColor">@color/white</item>
+        <item name="color">@color/button_purple</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/dark_purple</item>
+        <item name="colorPrimary">@color/gray</item>
     </style>
 </resources>

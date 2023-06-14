@@ -1,4 +1,4 @@
-package com.example.wallpaperapp
+package com.example.wallpaperapp.viewmodel
 
 
 
@@ -7,10 +7,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.wallpaperapp.data.PhotoCategoriesListItem
 import com.example.wallpaperapp.data.PhotosInCategoriesItem
+import com.example.wallpaperapp.data.repository.MainRepositoryImpl
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    private val repository: MainRepository
+    private val repository: MainRepositoryImpl
 
     ):ViewModel() {
 

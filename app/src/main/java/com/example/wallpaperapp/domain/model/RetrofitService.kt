@@ -1,4 +1,4 @@
-package com.example.wallpaperapp
+package com.example.wallpaperapp.domain.model
 
 
 import com.example.wallpaperapp.data.PhotoCategoriesListItem
@@ -29,10 +29,10 @@ interface RetrofitService {
 
     companion object{
 
-        var retrofitService:RetrofitService?=null
+        var retrofitService: RetrofitService?=null
 
-        fun getRetrofitInstance():RetrofitService{
-            if(retrofitService==null){
+        fun getRetrofitInstance(): RetrofitService {
+            if(retrofitService ==null){
                 val logging = HttpLoggingInterceptor()
                     logging.level = HttpLoggingInterceptor.Level.BASIC
                 val okHttpClient = OkHttpClient.Builder()

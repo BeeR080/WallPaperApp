@@ -6,6 +6,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
 
 import com.example.wallpaperapp.R
@@ -20,7 +22,6 @@ const val ACCESS_KEY ="aOq9dfxSKYdtuYsTmJzMznV65SPE9AZF4pJEvijjk_I"
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
     lateinit var sharedPref:SharedPreferences
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
       sharedPref = getSharedPreferences(
           "night_mode",
           Context.MODE_PRIVATE)
-      if(sharedPref.getBoolean("night_mode",true)){
+      if(sharedPref.getBoolean("night_mode",false)){
           AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
       }
       else{

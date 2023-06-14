@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.example.wallpaperapp.DiffUtillsPhotoCategoriesListItem
+import com.example.wallpaperapp.utills.DiffUtillsPhotoCategoriesListItem
 import com.example.wallpaperapp.R
 import com.example.wallpaperapp.data.PhotoCategoriesListItem
 import com.example.wallpaperapp.databinding.PhotocategoriesListBinding

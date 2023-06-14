@@ -1,4 +1,4 @@
-package com.example.wallpaperapp
+package com.example.wallpaperapp.utills
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.wallpaperapp.data.CoverPhoto

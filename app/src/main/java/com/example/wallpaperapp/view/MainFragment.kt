@@ -1,49 +1,44 @@
 package com.example.wallpaperapp.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.wallpaperapp.MainViewModel
-import com.example.wallpaperapp.MainViewModelFactory
+import com.example.wallpaperapp.viewmodel.MainViewModel
+import com.example.wallpaperapp.viewmodel.MainViewModelFactory
 import com.example.wallpaperapp.R
 import com.example.wallpaperapp.data.PhotoCategoriesListItem
 import com.example.wallpaperapp.databinding.FragmentMainBinding
 import com.example.wallpaperapp.view.adapters.MainAdapter
 import kotlinx.coroutines.launch
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(R.layout.fragment_main) {
 
-private lateinit var binding:FragmentMainBinding
-private lateinit var mainVm: MainViewModel
-    lateinit var adapter: MainAdapter
+    private var _binding:FragmentMainBinding? =null
+    private val binding: FragmentMainBinding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentMainBinding.inflate(inflater)
+    private lateinit var mainVm: MainViewModel
+    private lateinit var adapter: MainAdapter
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentMainBinding.bind(view)
 
         mainVm = ViewModelProvider(
             requireActivity(),
-            MainViewModelFactory())
+            MainViewModelFactory()
+        )
             .get(MainViewModel::class.java)
 
 
         initAdapter()
         getPhotoCategories()
         toolbarMenu()
-
-
-        return binding.root
     }
 
     private fun initAdapter(){
@@ -96,6 +91,11 @@ requireActivity().supportFragmentManager
             adapter.submitList(photoCategories)
         }
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

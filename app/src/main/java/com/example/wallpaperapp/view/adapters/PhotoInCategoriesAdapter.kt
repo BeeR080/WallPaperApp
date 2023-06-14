@@ -6,10 +6,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.example.wallpaperapp.DiffUtillsPhotoCategoriesListItem
-import com.example.wallpaperapp.DiffUtillsPhotoInCategories
+import com.example.wallpaperapp.utills.DiffUtillsPhotoInCategories
 import com.example.wallpaperapp.R
-import com.example.wallpaperapp.data.PhotoCategoriesListItem
 import com.example.wallpaperapp.data.PhotosInCategoriesItem
 import com.example.wallpaperapp.databinding.PhotoInCategoriesListBinding
 
@@ -35,6 +33,11 @@ class PhotoInCategoriesAdapter(
         init {
             itemView.setOnClickListener {
                 lListener.onClick(currentList[adapterPosition])
+
+
+            }
+            binding.picImageDownload.setOnClickListener {
+                lListener.onClickDownloadPhoto(currentList[adapterPosition])
             }
         }
 
@@ -47,6 +50,7 @@ class PhotoInCategoriesAdapter(
 
     interface AdapterClickListener{
         fun onClick(currentItem: PhotosInCategoriesItem)
+        fun onClickDownloadPhoto(currentItem: PhotosInCategoriesItem)
 
 
     }
