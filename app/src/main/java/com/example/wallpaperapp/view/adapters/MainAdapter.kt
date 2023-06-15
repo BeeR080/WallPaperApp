@@ -33,7 +33,7 @@ class MainAdapter(
 
         }
         init {
-            itemView.setOnClickListener {
+            binding.mfCardV.setOnClickListener {
                 lListener.onClick(currentList[layoutPosition])
             }
         }

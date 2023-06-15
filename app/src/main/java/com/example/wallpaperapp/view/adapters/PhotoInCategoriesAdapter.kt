@@ -31,7 +31,7 @@ class PhotoInCategoriesAdapter(
 
         }
         init {
-            itemView.setOnClickListener {
+            binding.picImage.setOnClickListener {
                 lListener.onClick(currentList[layoutPosition])
 
 
