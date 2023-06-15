@@ -1,10 +1,9 @@
-package com.example.wallpaperapp
+package com.example.wallpaperapp.data
 
 import android.app.DownloadManager
 import android.content.Context
 import android.net.Uri
 import android.os.Environment
-import androidx.core.net.toUri
 import com.example.wallpaperapp.view.ACCESS_KEY
 import java.io.File
 

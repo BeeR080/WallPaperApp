@@ -1,12 +1,11 @@
 package com.example.wallpaperapp.view
 
-import android.Manifest
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.wallpaperapp.DownloadManager
+import com.example.wallpaperapp.data.DownloadManager
 import com.example.wallpaperapp.viewmodel.MainViewModel
 import com.example.wallpaperapp.viewmodel.MainViewModelFactory
 import com.example.wallpaperapp.R

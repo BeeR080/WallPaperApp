@@ -24,20 +24,20 @@ class PhotoInCategoriesAdapter(
 
         fun bind(photoInCategories: PhotosInCategoriesItem) = with(binding){
 
-            picTvLikes.text= currentList[adapterPosition].likes.toString()
-            picImage.load(currentList[adapterPosition].urls.full){
+            picTvLikes.text= currentList[layoutPosition].likes.toString()
+            picImage.load(currentList[layoutPosition].urls.full){
                 transformations(RoundedCornersTransformation(8f))
             }
 
         }
         init {
             itemView.setOnClickListener {
-                lListener.onClick(currentList[adapterPosition])
+                lListener.onClick(currentList[layoutPosition])
 
 
             }
             binding.picImageDownload.setOnClickListener {
-                lListener.onClickDownloadPhoto(currentList[adapterPosition])
+                lListener.onClickDownloadPhoto(currentList[layoutPosition])
             }
         }
 
